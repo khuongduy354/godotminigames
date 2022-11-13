@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/unit.gd" type="Script" id=1]
+[ext_resource path="res://asset/Collectable Object/Light.png" type="Texture" id=2]
+[ext_resource path="res://asset/Collectable Object/Star.png" type="Texture" id=3]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array(  )
+}
+
+[node name="Unit" type="Path2D"]
+curve = SubResource( 1 )
+script = ExtResource( 1 )
+skin = ExtResource( 3 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2( 1, 2 )
+rotation = -0.00271002
+
+[node name="Sprite" type="Sprite" parent="PathFollow2D"]
+texture = ExtResource( 3 )
+
+[node name="shadow" type="Sprite" parent="PathFollow2D"]
+texture = ExtResource( 2 )
