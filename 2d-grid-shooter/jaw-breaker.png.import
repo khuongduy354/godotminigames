@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bluebird-midflap.png-07aa2e671cc282f84600c0497db68d7b.stex"
+path="res://.import/jaw-breaker.png-d7cf393dcaa386fb80df2370e24612ef.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/bluebird-midflap.png"
-dest_files=[ "res://.import/bluebird-midflap.png-07aa2e671cc282f84600c0497db68d7b.stex" ]
+source_file="res://jaw-breaker.png"
+dest_files=[ "res://.import/jaw-breaker.png-d7cf393dcaa386fb80df2370e24612ef.stex" ]
 
 [params]
 

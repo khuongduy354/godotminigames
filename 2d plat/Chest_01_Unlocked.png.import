@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/jawbreaker_sample.png-c0d27d1f445599e7048c57cb1fe39fdf.stex"
+path="res://.import/Chest_01_Unlocked.png-138104b9cfe16764ae5ee57d7ab69770.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://jawbreaker_sample.png"
-dest_files=[ "res://.import/jawbreaker_sample.png-c0d27d1f445599e7048c57cb1fe39fdf.stex" ]
+source_file="res://Chest_01_Unlocked.png"
+dest_files=[ "res://.import/Chest_01_Unlocked.png-138104b9cfe16764ae5ee57d7ab69770.stex" ]
 
 [params]
 
