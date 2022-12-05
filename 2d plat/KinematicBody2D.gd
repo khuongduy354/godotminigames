@@ -10,6 +10,7 @@ extends RigidBody2D
 func _ready():
 	pass # Replace with function body.
 onready var animation = $AnimatedSprite
+
 func _physics_process(delta):
 	var velocity = Vector2(0,0)
 	var speed = 10 

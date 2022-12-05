@@ -4,50 +4,71 @@ extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var Active = false 
+
+enum GameStateEnum{
+	START,RESTART,ACTIVE
+}
+var GameState=GameStateEnum.START
+
 onready var SpawnPoint = $SpawnPoint
 onready var timer = $Timer
+onready var SpawnTimer = $SpawnTimer
+
+onready var ScoringLabel = $CanvasLayer/Scoring
+onready var GameOverLabel = $CanvasLayer/Label2
+onready var GuideLabel = $CanvasLayer/Label
+
 var Enemy = load("res://Enemy.tscn")
 
-onready var SpawnTimer = $SpawnTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.wait_time=1
-	$Scoring.hide()
-	$Label2.hide()
+	update_hud()
 	$Dinosaur/AnimationPlayer.play("RESET")
 	
 func _physics_process(delta):
-	$ParallaxBackground/ParallaxLayer.position.x-=1
-	if not Active and Input.is_action_pressed("ui_accept"):
+	if GameState!=GameStateEnum.ACTIVE and Input.is_action_pressed("ui_accept"):
 		start_game()
-	
+
+func update_hud():
+	match GameState:
+		GameStateEnum.START:
+			ScoringLabel.show()
+			GameOverLabel.hide()
+		GameStateEnum.RESTART: 
+			GuideLabel.text="Press space to restart."
+			GuideLabel.show()
+			GameOverLabel.show()
+			ScoringLabel.hide() 
+		GameStateEnum.ACTIVE: 
+			GameOverLabel.hide()
+			GuideLabel.hide()
+
 func end_game():
+	GameState=GameStateEnum.RESTART
+	
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	for enemy in enemies: 
 		enemy.queue_free()
-	Active = false
-	$Label.show()
-	$Label2.show()
-	$Label.text="Press space to restart."
-	SpawnTimer.disconnect("timeout",self,"spawn_enemies")
-	$Scoring.hide()
+	
+	update_hud()
+
 func start_game():
-	$Scoring.show()
-	Active = true
+	GameState=GameStateEnum.ACTIVE
 	$Dinosaur.isDead=false
 	$Dinosaur/Hurt.hide()
-	$Label.hide()
-	$Label2.hide()
+
 	SpawnTimer.connect("timeout",self,"spawn_enemies")
 	$Dinosaur.connect("player_hit",self,"end_game")
 	$Dinosaur/AnimationPlayer.play("walk")
 	
+	update_hud()
+	
 func scored(): 	
-	var score = int($Scoring.text) 
+	var score = int(ScoringLabel.text) 
 	score+=1 
-	$Scoring.text= str(score)
+	ScoringLabel.text= str(score)
 	
 	
 func spawn_enemies():

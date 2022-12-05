@@ -11,7 +11,7 @@ onready var PointArea = $Point
 func _ready():
 	animation_player.play("attack")	
 	PointArea.connect("body_entered",self,"scored")
-
+	$VisibilityNotifier2D.connect("screen_exited",self,"queue_free")
 func scored(body:PhysicsBody2D): 
 	print(body.name)
 	if body.name == "Dinosaur":
@@ -22,5 +22,4 @@ func scored(body:PhysicsBody2D):
 #	pass
 func _physics_process(delta):
 	position.x -=1
-	if not $VisibilityNotifier2D.is_on_screen(): 
-		queue_free()
+

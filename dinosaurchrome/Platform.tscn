@@ -1,13 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Dinosaur.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Main.gd" type="Script" id=3]
-[ext_resource path="res://tileset/2 Background/Day/Background.png" type="Texture" id=4]
+[ext_resource path="res://tileset/1 Tiles/Tile_27.png" type="Texture" id=1]
+[ext_resource path="res://tileset/1 Tiles/Tile_04.png" type="Texture" id=2]
+[ext_resource path="res://tileset/1 Tiles/Tile_41.png" type="Texture" id=3]
+[ext_resource path="res://tileset/1 Tiles/Tile_02.png" type="Texture" id=4]
 [ext_resource path="res://tileset/1 Tiles/Tile_01.png" type="Texture" id=5]
-[ext_resource path="res://tileset/1 Tiles/Tile_02.png" type="Texture" id=6]
-[ext_resource path="res://tileset/1 Tiles/Tile_27.png" type="Texture" id=7]
-[ext_resource path="res://tileset/1 Tiles/Tile_04.png" type="Texture" id=8]
-[ext_resource path="res://tileset/1 Tiles/Tile_41.png" type="Texture" id=9]
 
 [sub_resource type="TileSet" id=1]
 0/name = "Tile_01.png 0"
@@ -25,7 +22,7 @@
 0/shapes = [  ]
 0/z_index = 0
 1/name = "Tile_02.png 1"
-1/texture = ExtResource( 6 )
+1/texture = ExtResource( 4 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 0, 0, 32, 32 )
@@ -39,7 +36,7 @@
 1/shapes = [  ]
 1/z_index = 0
 2/name = "Tile_04.png 2"
-2/texture = ExtResource( 8 )
+2/texture = ExtResource( 2 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 0, 0, 32, 32 )
@@ -53,7 +50,7 @@
 2/shapes = [  ]
 2/z_index = 0
 3/name = "Tile_41.png 3"
-3/texture = ExtResource( 9 )
+3/texture = ExtResource( 3 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 0, 0, 32, 32 )
@@ -67,7 +64,7 @@
 3/shapes = [  ]
 3/z_index = 0
 4/name = "Tile_27.png 4"
-4/texture = ExtResource( 7 )
+4/texture = ExtResource( 1 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 0, 0, 32, 32 )
@@ -81,71 +78,7 @@
 4/shapes = [  ]
 4/z_index = 0
 
-[node name="Main" type="Node2D"]
-position = Vector2( 468, 345 )
-script = ExtResource( 3 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enable = true
-
-[node name="Scoring" type="Label" parent="CanvasLayer"]
-anchor_left = 0.361
-anchor_top = 0.592
-anchor_right = 0.361
-anchor_bottom = 0.592
-margin_left = 0.0799866
-margin_top = -49.16
-margin_right = 40.08
-margin_bottom = -35.16
-text = "0"
-
-[node name="Label" type="Label" parent="CanvasLayer"]
-anchor_left = 0.361
-anchor_top = 0.46
-anchor_right = 0.361
-anchor_bottom = 0.46
-margin_left = -59.92
-margin_top = 112.2
-margin_right = 388.32
-margin_bottom = 251.96
-text = "Press space to start."
-
-[node name="Label2" type="Label" parent="CanvasLayer"]
-anchor_left = 0.361
-anchor_top = 0.46
-anchor_right = 0.361
-anchor_bottom = 0.46
-margin_left = -59.92
-margin_top = 0.199997
-margin_right = 70.08
-margin_bottom = 14.2
-text = "GAME OVER!"
-align = 1
-
-[node name="Dinosaur" parent="." instance=ExtResource( 1 )]
-position = Vector2( -198, -40 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Camera2D" type="Camera2D" parent="Dinosaur"]
-current = true
-zoom = Vector2( 0.5, 0.5 )
-
-[node name="SpawnPoint" type="Position2D" parent="."]
-position = Vector2( 31, -60 )
-scale = Vector2( 1.41671e+08, 56730.8 )
-
-[node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
-
-[node name="Timer" type="Timer" parent="."]
-
-[node name="Background" type="Sprite" parent="."]
-position = Vector2( -197, -174 )
-z_index = -1
-texture = ExtResource( 4 )
+[node name="Node2D" type="Node2D"]
 
 [node name="Platform" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
