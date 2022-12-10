@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Dinosaur.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Player/PlayerBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=3]
 [ext_resource path="res://tileset/2 Background/Day/Background.png" type="Texture" id=4]
 [ext_resource path="res://tileset/1 Tiles/Tile_01.png" type="Texture" id=5]
@@ -122,13 +122,13 @@ margin_bottom = 14.2
 text = "GAME OVER!"
 align = 1
 
-[node name="Dinosaur" parent="." instance=ExtResource( 1 )]
+[node name="PlayerBase" parent="." instance=ExtResource( 1 )]
 position = Vector2( -198, -40 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Camera2D" type="Camera2D" parent="Dinosaur"]
+[node name="Camera2D" type="Camera2D" parent="PlayerBase"]
 current = true
 zoom = Vector2( 0.5, 0.5 )
 

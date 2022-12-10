@@ -18,14 +18,11 @@ onready var ScoringLabel = $CanvasLayer/Scoring
 onready var GameOverLabel = $CanvasLayer/Label2
 onready var GuideLabel = $CanvasLayer/Label
 
-var Enemy = load("res://Enemy.tscn")
+var Enemy = preload("res://Enemy/EnemyBase.tscn")
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	timer.wait_time=1
 	update_hud()
-	$Dinosaur/AnimationPlayer.play("RESET")
 	
 func _physics_process(delta):
 	if GameState!=GameStateEnum.ACTIVE and Input.is_action_pressed("ui_accept"):
@@ -47,7 +44,6 @@ func update_hud():
 
 func end_game():
 	GameState=GameStateEnum.RESTART
-	
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	for enemy in enemies: 
 		enemy.queue_free()
@@ -56,18 +52,13 @@ func end_game():
 
 func start_game():
 	GameState=GameStateEnum.ACTIVE
-	$Dinosaur.isDead=false
-	$Dinosaur/Hurt.hide()
-
 	SpawnTimer.connect("timeout",self,"spawn_enemies")
-	$Dinosaur.connect("player_hit",self,"end_game")
-	$Dinosaur/AnimationPlayer.play("walk")
-	
 	update_hud()
 	
-func scored(): 	
+func scored(): 
 	var score = int(ScoringLabel.text) 
 	score+=1 
+	print(score)
 	ScoringLabel.text= str(score)
 	
 	
