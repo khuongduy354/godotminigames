@@ -108,7 +108,7 @@ margin_left = -59.92
 margin_top = 112.2
 margin_right = 388.32
 margin_bottom = 251.96
-text = "Press space to start."
+text = "Press Enter to start."
 
 [node name="Label2" type="Label" parent="CanvasLayer"]
 anchor_left = 0.361

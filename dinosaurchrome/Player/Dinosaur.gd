@@ -3,44 +3,56 @@ extends Node2D
 onready var animation_player = $AnimationPlayer
 
 signal player_hit
+signal die 
 
-enum  {IDLE,WALK,DIE,ATTACK,HURT,CROUCH,JUMP}
-var state = null 
+export var max_hp = 100 
+export var speed = 100 
+export var damage =10
+export var defense = 0
+var current_hp = 100  setget set_current_hp 
 
+func set_current_hp(value):
+	current_hp = clamp(value,0,max_hp)
+	print(current_hp)
+	if current_hp==0:
+		_change_state(Global.DIE)
+		emit_signal("die")
+		
+
+var state = Global.WALK
 func _ready():	
-	pass
-	
+	animation_player.connect("animation_finished",self,"_on_anim_finished")
 
+func _on_anim_finished(anim_name): 
+	state = Global.WALK
 
 func _change_state(new_state): 
 	match new_state: 
-		IDLE: 
-			pass
-		HURT: 
-			animation_player.play("hurt")	
-#			yield(animation_player,"animation_finished")
-#			animation_player.play("RESET")
-		CROUCH: 
+		Global.HURT: 
+			animation_player.play("hurt")
+		Global.CROUCH: 
 			animation_player.play("crouch")
-		WALK:
+		Global.WALK:
 			animation_player.play("walk")
-		ATTACK: 
+		Global.ATTACK: 
 			animation_player.play("attack")
-		DIE: 
+		Global.DIE: 
 			animation_player.play("die")
-		JUMP:
+		Global.JUMP:
 			animation_player.play("jump")
 	state = new_state
 
 func _physics_process(delta):
-	if state != DIE:
+	if state != Global.DIE:
 		if Input.is_action_pressed("down"):
-			_change_state(CROUCH)
-		else: 
-			_change_state(WALK)
-			
+			_change_state(Global.CROUCH)
+		if Input.is_action_just_pressed("spaced"):
+			_change_state(Global.ATTACK)
+		if state == Global.WALK: 
+			_change_state(Global.WALK)
+		
 
-func _on_Area2D_area_entered(area):
-	if area.name == "Enemy":
-		_change_state(HURT) 
-		emit_signal("player_hit")
+func take_damage(damage):
+	_change_state(Global.HURT)
+	damage -= defense
+	set_current_hp(current_hp-damage)

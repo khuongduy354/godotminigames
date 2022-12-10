@@ -25,7 +25,7 @@ func _ready():
 	update_hud()
 	
 func _physics_process(delta):
-	if GameState!=GameStateEnum.ACTIVE and Input.is_action_pressed("ui_accept"):
+	if GameState!=GameStateEnum.ACTIVE and Input.is_action_pressed("enter"):
 		start_game()
 
 func update_hud():
@@ -34,7 +34,7 @@ func update_hud():
 			ScoringLabel.show()
 			GameOverLabel.hide()
 		GameStateEnum.RESTART: 
-			GuideLabel.text="Press space to restart."
+			GuideLabel.text="Press Enter to restart."
 			GuideLabel.show()
 			GameOverLabel.show()
 			ScoringLabel.hide() 
@@ -58,7 +58,6 @@ func start_game():
 func scored(): 
 	var score = int(ScoringLabel.text) 
 	score+=1 
-	print(score)
 	ScoringLabel.text= str(score)
 	
 	
@@ -69,6 +68,4 @@ func spawn_enemies():
 	enemy.connect("scored",self,"scored")
 	add_child(enemy)
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
