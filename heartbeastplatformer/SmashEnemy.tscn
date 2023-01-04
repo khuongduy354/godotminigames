@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://players + enemies art/5/Attack.png" type="Texture" id=1]
+[ext_resource path="res://SmashEnemy.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "New Anim"
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Attack:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "down"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Attack:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=4]
+height = 0.0
+
+[sub_resource type="CircleShape2D" id=5]
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 2
+emission_box_extents = Vector3( 8, 1, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -5, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 0.32
+angle = 360.0
+angle_random = 0.39
+color = Color( 0.784314, 0.698039, 0.698039, 1 )
+
+[node name="SmashEnemy" type="KinematicBody2D"]
+position = Vector2( 48, 24 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/New Anim" = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+anims/down = SubResource( 3 )
+
+[node name="Attack" type="Sprite" parent="."]
+scale = Vector2( 0.796296, 1 )
+texture = ExtResource( 1 )
+hframes = 4
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -8, 0 )
+shape = SubResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0, 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -8, 0 )
+shape = SubResource( 5 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( -8, 8 )
+emitting = false
+amount = 32
+one_shot = true
+speed_scale = 0.95
+explosiveness = 1.0
+process_material = SubResource( 6 )
+
+[node name="IdleTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="IdleTimer" to="." method="_on_IdleTimer_timeout"]
