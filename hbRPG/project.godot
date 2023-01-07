@@ -1,0 +1,84 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "HitBox",
+"language": "GDScript",
+"path": "res://Utility/Hitbox.gd"
+}, {
+"base": "Area2D",
+"class": "HurtBox",
+"language": "GDScript",
+"path": "res://Utility/Hurtbox.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Player/Player.gd"
+}, {
+"base": "HitBox",
+"class": "PlayerHitbox",
+"language": "GDScript",
+"path": "res://Player/PlayerHitbox.gd"
+} ]
+_global_script_class_icons={
+"HitBox": "",
+"HurtBox": "",
+"Player": "",
+"PlayerHitbox": ""
+}
+
+[application]
+
+config/name="HeartBeastRPG"
+run/main_scene="res://World/World.tscn"
+config/icon="res://Action RPG Resources/World/Bush.png"
+
+[autoload]
+
+LoadingData="*res://Utility/loading_data.gd"
+AudioPlayer="*res://Utility/AudioPlayer.tscn"
+
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+space={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+r={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":82,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Environment"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
