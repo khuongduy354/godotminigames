@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Bullet.gd" type="Script" id=1]
+[ext_resource path="res://spaceshooter/PNG/Lasers/laserBlue01.png" type="Texture" id=2]
+[ext_resource path="res://Hitbox.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.00002
+height = 46.0
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource( 1 )
+SPEED = 300
+
+[node name="LaserBlue01" type="Sprite" parent="."]
+rotation = 1.5708
+texture = ExtResource( 2 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+rotation = 1.57079
+shape = SubResource( 1 )

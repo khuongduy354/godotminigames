@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://spaceshooter/PNG/playerShip1_blue.png" type="Texture" id=2]
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 191, 122 )
+script = ExtResource( 1 )
+
+[node name="PlayerShip1Blue" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -7, 36, -15, 28, -43, 21, -48, -5, -37, 2, -12, -11, -7, -37, 8, -37, 12, -13, 37, 2, 47, -6, 47, 23, 42, 20, 14, 28, 7, 36 )
+
+[node name="shoot_pos" type="Position2D" parent="."]
+position = Vector2( 0, -37 )
