@@ -18,7 +18,6 @@ export var smash_veloc = 4
 func _ready():
 	idle_timer.wait_time = idle_time
 func _physics_process(delta):
-	print(state)
 	match state: 
 		UP: 
 			move_up()

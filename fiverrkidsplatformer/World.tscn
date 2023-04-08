@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://World.gd" type="Script" id=1]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=3]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 48, 125 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+zoom = Vector2( 0.75, 0.75 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="UI"]
+margin_left = 14.0
+margin_top = 13.0
+margin_right = 96.0
+margin_bottom = 55.0
+text = "Hearts"
+
+[node name="Label2" type="Label" parent="UI"]
+margin_left = 95.0
+margin_top = 13.0
+margin_right = 170.0
+margin_bottom = 55.0
+text = "Time"
+align = 1
+
+[node name="Label3" type="Label" parent="UI"]
+margin_left = 170.0
+margin_top = 13.0
+margin_right = 258.0
+margin_bottom = 48.0
+text = "Scores"
+align = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 120.0
+
+[node name="spawnpoint" type="Position2D" parent="."]
+position = Vector2( 48, 125 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

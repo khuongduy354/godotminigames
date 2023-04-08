@@ -5,7 +5,8 @@
 [ext_resource path="res://PlayerMovementData.tres" type="Resource" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-height = 16.0
+radius = 15.0901
+height = 1.974
 
 [node name="Player" type="KinematicBody2D" groups=["checkpointer", "climber"]]
 collision_mask = 6
@@ -13,7 +14,8 @@ script = ExtResource( 2 )
 MovementData = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -10, 9 )
+position = Vector2( -11, 15 )
+scale = Vector2( 0.994031, 0.899778 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

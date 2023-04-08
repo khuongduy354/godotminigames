@@ -24,16 +24,19 @@ var veloc = Vector2.ZERO
 func _ready():
 	pass # Replace with function body.
 
+func _process(delta):
+	var fps = String(Engine.get_frames_per_second())
+	print(fps)
 func _physics_process(delta):
 	var dir =get_input_direction()
-	was_on_floor = is_on_floor()
-	prepare_state()
-	match state: 
-		CLIMB: 
-			climb(dir.x)
-		MOVE: 
-			move(dir.x)
-	apply_x_accel(dir.x)
+#	was_on_floor = is_on_floor()
+#	prepare_state()
+#	match state: 
+#		CLIMB: 
+#			climb(dir)
+#		MOVE: 
+	move_test(dir)
+	move_and_slide(veloc,Vector2.UP)
 
 func prepare_state():
 	if Input.is_action_pressed("ui_up") and is_in_ladder:
@@ -48,8 +51,11 @@ func climb(dir):
 		veloc.y=50
 	else: 
 		veloc.y=0
-	move_and_slide(veloc,Vector2.UP)
 
+func move_test(dir):
+	veloc.x=move_toward(veloc.x,dir.x*100,20)
+	veloc.y+=10
+#	veloc = dir * 100
 
 func move(dir): 
 	# buffer, coyote, double jump implemented
@@ -74,7 +80,7 @@ func move(dir):
 				
 			bounce_jump=true
 			$BounceJump.start()
-	move_and_slide(veloc,Vector2.UP)
+	veloc.x=move_toward(veloc.x,dir.x*100,20)
 
 func set_in_ladder(isInLad:bool):
 	is_in_ladder = isInLad
@@ -108,7 +114,7 @@ func _on_Hurtbox_body_entered(body):
 		self.take_damage(body.damage)
 
 func apply_x_accel(dir):
-	veloc.x=move_toward(veloc.x,dir*max_speed,20)
+	veloc.x=move_toward(veloc.x,dir.x*max_speed,20)
 	
 func apply_friction():
 	veloc.x = move_toward(veloc.x,0,20)
