@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbo022osuum4y"]
+
+[ext_resource type="Script" path="res://Item.gd" id="1"]
+[ext_resource type="Resource" uid="uid://cre1h5vf170in" path="res://item_data.tres" id="2_ywu3d"]
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1")
+item_data = ExtResource("2_ywu3d")
+
+[node name="icon" type="TextureRect" parent="."]
+offset_right = 18.0
+offset_bottom = 18.0
+mouse_filter = 2

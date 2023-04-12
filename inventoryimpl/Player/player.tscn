@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://daf4roa334tis"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_3lwoq"]
+[ext_resource type="Texture2D" uid="uid://q3m01u4uwy8" path="res://item_icons/hotbar_background.png" id="1_83o74"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yy512"]
+size = Vector2(20, 44)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_3lwoq")
+
+[node name="HotbarBackground" type="Sprite2D" parent="."]
+position = Vector2(0, -7.62939e-06)
+rotation = 1.57079
+scale = Vector2(0.274691, 1)
+texture = ExtResource("1_83o74")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yy512")
+
+[node name="item_pos" type="Marker2D" parent="."]
+position = Vector2(15, -10)

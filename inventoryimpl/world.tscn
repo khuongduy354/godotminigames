@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://doqgcummw8m6h"]
+
+[ext_resource type="PackedScene" uid="uid://daf4roa334tis" path="res://Player/player.tscn" id="1_qq567"]
+[ext_resource type="Script" path="res://world.gd" id="1_vqucw"]
+[ext_resource type="PackedScene" uid="uid://c3q7e58i67vah" path="res://Bag.tscn" id="2_yqo8s"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_vqucw")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_qq567")]
+
+[node name="Bag" parent="." instance=ExtResource("2_yqo8s")]
+offset_top = 385.0
+offset_right = 172.0
+offset_bottom = 425.0

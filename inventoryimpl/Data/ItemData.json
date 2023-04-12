@@ -1,0 +1,12 @@
+{
+  "Iron Sword": {
+    "attack": 12,
+    "stackSize": 1
+  },
+  "Blue Jeans": {
+    "stackSize": 32
+  },
+  "Brown Shirt": {
+    "stackSize": 32
+  }
+}
