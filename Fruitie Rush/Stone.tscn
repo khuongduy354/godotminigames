@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/boy spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://Collectible.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 21.095
+
+[node name="Stone" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="BoySpritesheet" type="Sprite" parent="."]
+scale = Vector2( 5, 5 )
+texture = ExtResource( 1 )
+hframes = 4
+vframes = 5
+frame = 17
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -27, 67 )
+shape = SubResource( 1 )
+
+[connection signal="area_entered" from="." to="." method="_on_Stone_area_entered"]
